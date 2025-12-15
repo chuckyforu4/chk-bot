@@ -1,12 +1,11 @@
-{
-  "name": "chk-bot",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "dependencies": {
-    "express": "^4.18.2"
-  }
-}
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => res.send("Bot is running"));
+app.get("/chk", (req, res) =>
+  res.json({ status: "OK", message: "Bot alive" })
+);
+
+const port = process.env.PORT || 3000;
+app.listen(port);
 
