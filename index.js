@@ -1,11 +1,14 @@
+const TelegramBot = require("");node-telegram-bot-api
 const express = require("express");
+
 const app = express();
 
-app.get("/", (req, res) => res.send("Bot is running"));
-app.get("/chk", (req, res) =>
-  res.json({ status: "OK", message: "Bot alive" })
-);
+// Telegram Botconst bot = new TelegramBot(process.env.BOT_TOKEN,{ polling: true });
 
-const port = process.env.PORT || 3000;
-app.listen(port);
+bot.on("message", (msg) =>{bot.sendMessage(msg.chat.id, "Bot is alive ✅");});
+
+// Health check for Renderapp.get("/", (req, res) => {res.send("Bot running");});
+
+// Serverconst port = process.env.PORT || 3000;
+app.listen(port, () => {console.log("Server running on port", port);});
 
