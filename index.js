@@ -8,17 +8,23 @@ const bot = new TelegramBot(process.env.BOT_TOKEN, {
 });
 
 bot.on("message", (msg) => {
-  bot.sendMessage(msg.chat.id, "Bot is alive ✅");
+  const chatId = msg.chat.id;
+
+  if (msg.text && msg.text.startsWith("/chk")) {
+    const data = msg.text.replace("/chk", "").trim();
+
+    if (!data) {
+      bot.sendMessage(
+        chatId,
+        "❌ Usage:\n/chk 4242424242424242|12|26|123"
+      );
+      return;
+    }
+
+    bot.sendMessage(
+      chatId,
+      `💳 Card: ${data}\n✅ Status: LIVE (demo)`
+    );
+    return;
+  }
 });
-
-app.get("/", (req, res) => {
-  res.send("Bot running");
-});
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log("Server running on port", port);
-});
-
-
-
